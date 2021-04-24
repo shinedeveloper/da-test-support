@@ -21,13 +21,19 @@ public class HlavniProgram {
             browser.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             browser.navigate().to("https://www.wikipedia.org/");
 
+            waitUntilJavaScriptFindsElement("#searchInput");
             WebElement searchElement = browser.findElement(By.cssSelector("#searchInput"));
             searchElement.sendKeys("Hello World program");
-            searchElement.submit();
+            //searchElement.submit();
+
+            WebElement searchButton = browser.findElement(By.cssSelector("button.pure-button-primary-progressive"));
+            searchButton.click();
 
             waitUntilJavaScriptFindsElement("#History");
             WebElement historyParagraph = browser.findElement(By.cssSelector("#History"));
             System.out.println("Success");
+
+
 
         } finally {
             browser.close();
