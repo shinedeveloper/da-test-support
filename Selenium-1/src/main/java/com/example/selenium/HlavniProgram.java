@@ -21,7 +21,7 @@ public class HlavniProgram {
             browser.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             browser.navigate().to("https://www.wikipedia.org/");
 
-            WebElement searchElement = browser.findElement(By.id("searchInput"));
+            WebElement searchElement = browser.findElement(By.cssSelector("#searchInput"));
             searchElement.sendKeys("Hello World program");
             searchElement.submit();
 
