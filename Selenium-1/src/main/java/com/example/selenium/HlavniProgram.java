@@ -43,8 +43,11 @@ public class HlavniProgram {
 
             Path filePath = Paths.get("results.txt");
             BufferedWriter fileWriter = Files.newBufferedWriter(filePath, StandardCharsets.UTF_8);
-            fileWriter.write(text);
-            fileWriter.close();
+            try {
+                fileWriter.write(text);
+            } finally {
+                fileWriter.close();
+            }
 
         } finally {
             browser.close();
