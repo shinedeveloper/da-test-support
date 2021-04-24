@@ -7,13 +7,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 public class HlavniProgram {
 
     private WebDriver browser;
 
-    public void run() {
+    public void run() throws IOException {
         System.setProperty("webdriver.gecko.driver", "C:\\Java-Training\\Selenium\\geckodriver.exe");
         browser = new FirefoxDriver();
         try {
@@ -31,9 +37,14 @@ public class HlavniProgram {
 
             waitUntilJavaScriptFindsElement("#History");
             WebElement historyParagraph = browser.findElement(By.cssSelector("#History"));
-            System.out.println("Success");
+//            System.out.println("Success");
 
+            String text = historyParagraph.getText();
 
+            Path filePath = Paths.get("results.txt");
+            BufferedWriter fileWriter = Files.newBufferedWriter(filePath, StandardCharsets.UTF_8);
+            fileWriter.write(text);
+            fileWriter.close();
 
         } finally {
             browser.close();
