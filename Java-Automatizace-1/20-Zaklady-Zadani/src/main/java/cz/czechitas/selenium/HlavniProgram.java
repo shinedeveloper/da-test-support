@@ -18,8 +18,13 @@ public class HlavniProgram {
 
         prohlizec.navigate().to("https://automation.shinekamil.repl.co/");
 
-        WebElement zalozkaButtons = prohlizec.findElement(By.id("selectorsButtons"));
+        Thread.sleep(5_000);
+
+        WebElement zalozkaButtons = prohlizec.findElement(By.xpath("//li[@id='selectorsButtons']/a"));
+//        WebElement zalozkaButtons = prohlizec.findElement(By.xpath("//ul/li"));
         zalozkaButtons.click();
+
+        Thread.sleep(5_000);
 
         WebElement tlacitkoButton1 = prohlizec.findElement(By.id("button1"));
         tlacitkoButton1.click();
