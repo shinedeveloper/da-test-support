@@ -25,6 +25,10 @@ public class HlavniProgram {
             System.out.println("Odstavec: "+i);
             System.out.println(jedenOdstavec.getText());
         }
+        for (WebElement jedenOdstavec : seznamOdstavcu) {
+            System.out.println("Odstavec: ");
+            System.out.println(jedenOdstavec.getText());
+        }
 
         Thread.sleep(10_000);
         prohlizec.close();
