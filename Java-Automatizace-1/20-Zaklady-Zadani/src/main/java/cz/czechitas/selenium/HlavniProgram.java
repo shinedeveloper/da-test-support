@@ -21,7 +21,7 @@ public class HlavniProgram {
         Thread.sleep(5_000);
 
         WebElement zalozkaButtons = prohlizec.findElement(By.xpath("//li[@id='selectorsButtons']/a"));
-//        WebElement zalozkaButtons = prohlizec.findElement(By.xpath("//ul/li"));
+//      WebElement zalozkaButtons = prohlizec.findElement(By.xpath("//ul/li"));
         zalozkaButtons.click();
 
         Thread.sleep(5_000);
@@ -32,8 +32,6 @@ public class HlavniProgram {
         Thread.sleep(10_000);
 
         prohlizec.close();
-
-        // Prestavka do 18:50
     }
 
 }

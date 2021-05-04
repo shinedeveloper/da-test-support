@@ -13,28 +13,25 @@ public class HlavniProgram {
 //      System.setProperty("webdriver.gecko.driver", System.getProperty("user.home") + "/Java-Training/Selenium/geckodriver");
         System.setProperty("webdriver.gecko.driver", "C:\\Java-Training\\Selenium\\geckodriver.exe");
 
-        WebDriver prohlizec;
-        prohlizec = new FirefoxDriver();
-        try {
+        WebDriver prohlizec = new FirefoxDriver();
+        prohlizec.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        prohlizec.navigate().to("https://automation.shinekamil.repl.co/");
 
-            prohlizec.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-            prohlizec.navigate().to("https://automation.shinekamil.repl.co/");
+        WebElement zalozkaButtons = prohlizec.findElement(By.id("selectorsButtons"));
+//      WebElement zalozkaButtons = prohlizec.findElement(By.xpath("//li[@id='selectorsButtons']"));
+//      WebElement zalozkaButtons = prohlizec.findElement(By.xpath("//*[text() = 'Buttons']"));
+//      WebElement zalozkaButtons = prohlizec.findElement(By.xpath("//ul/li"));
+        zalozkaButtons.click();
 
-            WebElement zalozkaButtons = prohlizec.findElement(By.id("selectorsButtons"));
-//          WebElement zalozkaButtons = prohlizec.findElement(By.xpath("//*[text() = 'Buttons']"));
-            zalozkaButtons.click();
+        Thread.sleep(5_000);
 
-            Thread.sleep(2_000);
+        WebElement tlacitkoButton1 = prohlizec.findElement(By.id("button1"));
+        tlacitkoButton1.click();
 
-            WebElement tlacitkoButton1 = prohlizec.findElement(By.id("button1"));
-            tlacitkoButton1.click();
+        System.out.println("\n\nHotovo!\n\n");
+        Thread.sleep(10_000);
 
-            System.out.println("\n\nHotovo!\n\n");
-            Thread.sleep(5_000);
-
-        } finally {
-            prohlizec.close();
-        }
+        prohlizec.close();
     }
 
 }
