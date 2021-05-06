@@ -20,14 +20,14 @@ public class TestyAutomatizace3 {
         prohlizec.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
-    /*
+
     @Test
     public void po5nasobnemStiskuTlacikaLajkMusiBytPocetLajku5() {
         prohlizec.navigate().to("https://automation3.shinekamil.repl.co/selectors.html");
 
         // TODO: Sem vepiste svuj program
     }
-    */
+
 
     /*
     @Test

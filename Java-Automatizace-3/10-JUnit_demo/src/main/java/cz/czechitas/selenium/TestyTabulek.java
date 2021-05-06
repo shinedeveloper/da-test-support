@@ -24,7 +24,7 @@ public class TestyTabulek {
 
     @Test
     public void zviratVTabulceMusiByt7() {
-        prohlizec.navigate().to("https://automation2.shinekamil.repl.co/");
+        prohlizec.navigate().to("https://automation3.shinekamil.repl.co/");
         WebElement zalozkaTabulka = prohlizec.findElement(By.linkText("Table"));
         zalozkaTabulka.click();
 
@@ -34,7 +34,7 @@ public class TestyTabulek {
 
     @Test
     public void prvniZvireVTabulceMusiBytKocka() {
-        prohlizec.navigate().to("https://automation2.shinekamil.repl.co/");
+        prohlizec.navigate().to("https://automation3.shinekamil.repl.co/");
         WebElement zalozkaTabulka = prohlizec.findElement(By.linkText("Table"));
         zalozkaTabulka.click();
 

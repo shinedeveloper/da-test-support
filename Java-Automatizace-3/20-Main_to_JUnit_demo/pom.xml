@@ -21,13 +21,11 @@
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
         </dependency>
-        <!-- TODO
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.7.1</version>
         </dependency>
-        -->
     </dependencies>
 
     <build>
