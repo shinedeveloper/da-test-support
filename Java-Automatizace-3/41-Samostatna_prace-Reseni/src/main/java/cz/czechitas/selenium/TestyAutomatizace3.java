@@ -34,14 +34,14 @@ public class TestyAutomatizace3 {
         for (int i = 0; i < zadanyPocetLajku; i++) {
             tlacitkoLajk.click();
         }
+
         WebElement spanPocetLajku = prohlizec.findElement(By.id("lvlAwesome"));
         int skutecnyPocetLajku = Integer.parseInt(spanPocetLajku.getText());
         Assertions.assertEquals(zadanyPocetLajku, skutecnyPocetLajku);
     }
 
-
     @Test
-    public void poStiskuPridejKockuMusiBytSpravnyPocetObrazkuKocek() throws Exception {
+    public void poStiskuPridejKockuMusiBytSpravnyPocetObrazkuKocek() {
         prohlizec.navigate().to("https://automation3.shinekamil.repl.co/adding.html");
         for (int i = 1; i <= 10; i++) {
             WebElement tlacitkoPridejKocku = prohlizec.findElement(By.id("addItem"));
@@ -57,19 +57,22 @@ public class TestyAutomatizace3 {
     public void poStiskuPridejAOdeberKockuMusiBytSpravnyPocetObrazkuKocek() {
         prohlizec.navigate().to("https://automation3.shinekamil.repl.co/adding.html");
         WebElement tlacitkoPridejKocku = prohlizec.findElement(By.id("addItem"));
-        WebElement tlacitkoOdeberKocku = prohlizec.findElement(By.id("removeItem"));
         for (int i = 0; i < 10; i++) {
             tlacitkoPridejKocku.click();
         }
+        assertujSpravnyPocetKocek(10);
+
+        WebElement tlacitkoOdeberKocku = prohlizec.findElement(By.id("removeItem"));
+        tlacitkoOdeberKocku.click();
+
+        assertujSpravnyPocetKocek(9);
+    }
+
+    private void assertujSpravnyPocetKocek(int pocetKocek) {
         List<WebElement> obdelnikyKocek = prohlizec.findElements(By.xpath("//div[@class = 'card cat']"));
         WebElement spanPocetKocek = prohlizec.findElement(By.id("counter"));
-        Assertions.assertEquals(10, obdelnikyKocek.size());
-        Assertions.assertEquals(10, Integer.parseInt(spanPocetKocek.getText()));
-        tlacitkoOdeberKocku.click();
-        obdelnikyKocek = prohlizec.findElements(By.xpath("//div[@class = 'card cat']"));
-        spanPocetKocek = prohlizec.findElement(By.id("counter"));
-        Assertions.assertEquals(9, obdelnikyKocek.size());
-        Assertions.assertEquals(9, Integer.parseInt(spanPocetKocek.getText()));
+        Assertions.assertEquals(pocetKocek, obdelnikyKocek.size());
+        Assertions.assertEquals(pocetKocek, Integer.parseInt(spanPocetKocek.getText()));
     }
 
     @AfterEach
