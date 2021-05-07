@@ -68,6 +68,23 @@ public class TestyAutomatizace3 {
         assertujSpravnyPocetKocek(9);
     }
 
+    @Test
+    public void poStiskuPridejAOdeberKockuVicekratNezBylaPridanaMusiBytPocetKocek0() {
+        prohlizec.navigate().to("https://automation3.shinekamil.repl.co/adding.html");
+        WebElement tlacitkoPridejKocku = prohlizec.findElement(By.id("addItem"));
+        for (int i = 0; i < 10; i++) {
+            tlacitkoPridejKocku.click();
+        }
+        assertujSpravnyPocetKocek(10);
+
+        WebElement tlacitkoOdeberKocku = prohlizec.findElement(By.id("removeItem"));
+        for (int i = 0; i < 15; i++) {
+            tlacitkoOdeberKocku.click();
+        }
+
+        assertujSpravnyPocetKocek(0);
+    }
+
     private void assertujSpravnyPocetKocek(int pocetKocek) {
         List<WebElement> obdelnikyKocek = prohlizec.findElements(By.xpath("//div[@class = 'card cat']"));
         WebElement spanPocetKocek = prohlizec.findElement(By.id("counter"));
