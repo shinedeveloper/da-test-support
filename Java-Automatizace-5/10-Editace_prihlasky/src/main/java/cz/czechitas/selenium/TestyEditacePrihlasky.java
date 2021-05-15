@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class TestyEditacePrihlasky {
 
     // Nejdrive konstanty
-    private static final String URL_APLIKACE = "https://cz-test-jedna.herokuapp.com/";
+    private static final String URL_APLIKACE = "https://cz-test-dva.herokuapp.com/";
 
     WebDriver prohlizec;
 

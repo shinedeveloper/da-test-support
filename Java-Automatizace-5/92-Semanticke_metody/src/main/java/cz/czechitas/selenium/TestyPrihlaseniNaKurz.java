@@ -27,12 +27,13 @@ public class TestyPrihlaseniNaKurz {
     @Test
     public void prihlaseniMusiFungovat() {
         prohlizec.navigate().to(URL_APLIKACE);
-        klikniNaTlacitkoPrihlasitUzivatele();
+        LoginPage prihlasovaciStranka = new LoginPage(prohlizec);
+        prihlasovaciStranka.klikniNaTlacitkoPrihlasitUzivatele();
 
-        prihlasUzivatele();
+        prihlasovaciStranka.prihlasUzivatele();
 
         Assertions.assertTrue(prohlizec.getCurrentUrl().endsWith("/zaci"));
-        WebElement nadpisStranky = najdiNadpisStranky();
+        WebElement nadpisStranky = prihlasovaciStranka.najdiNadpisStranky();
         Assertions.assertEquals("Přihlášky", nadpisStranky.getText());
     }
 
@@ -41,7 +42,8 @@ public class TestyPrihlaseniNaKurz {
         String urlZakovychPrihlasek = URL_APLIKACE + "zaci";
         prohlizec.navigate().to(urlZakovychPrihlasek);
 
-        prihlasUzivatele();
+        LoginPage prihlasovaciStranka = new LoginPage(prohlizec);
+        prihlasovaciStranka.prihlasUzivatele();
 
         WebElement tlacitkoVytvoritNovouPrihlasku = prohlizec.findElement(By.linkText("Vytvořit novou přihlášku"));
         tlacitkoVytvoritNovouPrihlasku.click();
@@ -65,9 +67,11 @@ public class TestyPrihlaseniNaKurz {
 
         vyberKategoriiCislo(2);
         vyberKurzCislo(0);
-        prihlasUzivatele();
 
-        WebElement nadpisStranky = najdiNadpisStranky();
+        LoginPage prihlasovaciStranka = new LoginPage(prohlizec);
+        prihlasovaciStranka.prihlasUzivatele();
+
+        WebElement nadpisStranky = prihlasovaciStranka.najdiNadpisStranky();
         Assertions.assertEquals("Nová přihláška", nadpisStranky.getText());
 
         vyplnPrihlaskuNaKurz();
@@ -80,39 +84,6 @@ public class TestyPrihlaseniNaKurz {
     }
 
     //-------------------------------------------------------------------------
-
-    public void klikniNaTlacitkoPrihlasitUzivatele() {
-        WebElement odkazPrihlasit = prohlizec.findElement(By.linkText("Přihlásit"));
-        odkazPrihlasit.click();
-    }
-
-    public void prihlasUzivatele() {
-        WebElement nadpisStranky = najdiNadpisStranky();
-        Assertions.assertEquals("Přihlášení", nadpisStranky.getText());
-
-        vyplnUzivatelskeJmeno("petr.otec@seznam.cz");
-        vyplnHeslo("Czechitas123");
-        potvrdPrihlaseni();
-    }
-
-    public WebElement najdiNadpisStranky() {
-        return prohlizec.findElement(By.xpath("//header//h1"));
-    }
-
-    public void vyplnUzivatelskeJmeno(String uzivJmeno) {
-        WebElement polickoEmail = prohlizec.findElement(By.id("email"));
-        polickoEmail.sendKeys(uzivJmeno);
-    }
-
-    public void vyplnHeslo(String heslo) {
-        WebElement polickoHeslo = prohlizec.findElement(By.id("password"));
-        polickoHeslo.sendKeys(heslo);
-    }
-
-    public void potvrdPrihlaseni() {
-        WebElement tlacitkoPrihlasit = prohlizec.findElement(By.xpath("//form//button[contains(text(), 'Přihlásit')]"));
-        tlacitkoPrihlasit.click();
-    }
 
     public void vyberKurzCislo(int poradiKurzu) {
         List<WebElement> tlacitkaKurzuVytvoritPrihlasku = prohlizec.findElements(By.xpath("//div[@class = 'card']//a[text() = 'Vytvořit přihlášku']"));
