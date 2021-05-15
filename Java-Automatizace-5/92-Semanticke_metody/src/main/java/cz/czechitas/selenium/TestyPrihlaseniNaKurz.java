@@ -45,10 +45,9 @@ public class TestyPrihlaseniNaKurz {
         LoginPage prihlasovaciStranka = new LoginPage(prohlizec);
         prihlasovaciStranka.prihlasUzivatele();
 
-        WebElement tlacitkoVytvoritNovouPrihlasku = prohlizec.findElement(By.linkText("Vytvořit novou přihlášku"));
-        tlacitkoVytvoritNovouPrihlasku.click();
-
-        vyberKategoriiCislo(2);
+        EnrolmentPage strankaSPrihlaskami = new EnrolmentPage(prohlizec);
+        HomePage domovskaStranka = strankaSPrihlaskami.zapocniNovouPrihlasku();
+        domovskaStranka.vyberKategoriiCislo(2);
 
         vyberKurzCislo(0);
 
@@ -89,12 +88,6 @@ public class TestyPrihlaseniNaKurz {
         List<WebElement> tlacitkaKurzuVytvoritPrihlasku = prohlizec.findElements(By.xpath("//div[@class = 'card']//a[text() = 'Vytvořit přihlášku']"));
         WebElement tlacitkoVytvoritPrihlasku = tlacitkaKurzuVytvoritPrihlasku.get(poradiKurzu);
         tlacitkoVytvoritPrihlasku.click();
-    }
-
-    public void vyberKategoriiCislo(int poradiKategorie) {
-        List<WebElement> tlacitkaKurzuViceInformaci = prohlizec.findElements(By.xpath("//div[@class = 'card']//a[text() = 'Více informací']"));
-        WebElement tlacitkoViceInformaci = tlacitkaKurzuViceInformaci.get(poradiKategorie);
-        tlacitkoViceInformaci.click();
     }
 
     public void vyplnPrihlaskuNaKurz() {
