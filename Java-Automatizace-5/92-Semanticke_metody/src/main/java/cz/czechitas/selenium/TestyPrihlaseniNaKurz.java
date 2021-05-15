@@ -81,12 +81,12 @@ public class TestyPrihlaseniNaKurz {
 
     //-------------------------------------------------------------------------
 
-    private void klikniNaTlacitkoPrihlasitUzivatele() {
+    public void klikniNaTlacitkoPrihlasitUzivatele() {
         WebElement odkazPrihlasit = prohlizec.findElement(By.linkText("Přihlásit"));
         odkazPrihlasit.click();
     }
 
-    private void prihlasUzivatele() {
+    public void prihlasUzivatele() {
         WebElement nadpisStranky = najdiNadpisStranky();
         Assertions.assertEquals("Přihlášení", nadpisStranky.getText());
 
@@ -95,38 +95,38 @@ public class TestyPrihlaseniNaKurz {
         potvrdPrihlaseni();
     }
 
-    private WebElement najdiNadpisStranky() {
+    public WebElement najdiNadpisStranky() {
         return prohlizec.findElement(By.xpath("//header//h1"));
     }
 
-    private void vyplnUzivatelskeJmeno(String uzivJmeno) {
+    public void vyplnUzivatelskeJmeno(String uzivJmeno) {
         WebElement polickoEmail = prohlizec.findElement(By.id("email"));
         polickoEmail.sendKeys(uzivJmeno);
     }
 
-    private void vyplnHeslo(String heslo) {
+    public void vyplnHeslo(String heslo) {
         WebElement polickoHeslo = prohlizec.findElement(By.id("password"));
         polickoHeslo.sendKeys(heslo);
     }
 
-    private void potvrdPrihlaseni() {
+    public void potvrdPrihlaseni() {
         WebElement tlacitkoPrihlasit = prohlizec.findElement(By.xpath("//form//button[contains(text(), 'Přihlásit')]"));
         tlacitkoPrihlasit.click();
     }
 
-    private void vyberKurzCislo(int poradiKurzu) {
+    public void vyberKurzCislo(int poradiKurzu) {
         List<WebElement> tlacitkaKurzuVytvoritPrihlasku = prohlizec.findElements(By.xpath("//div[@class = 'card']//a[text() = 'Vytvořit přihlášku']"));
         WebElement tlacitkoVytvoritPrihlasku = tlacitkaKurzuVytvoritPrihlasku.get(poradiKurzu);
         tlacitkoVytvoritPrihlasku.click();
     }
 
-    private void vyberKategoriiCislo(int poradiKategorie) {
+    public void vyberKategoriiCislo(int poradiKategorie) {
         List<WebElement> tlacitkaKurzuViceInformaci = prohlizec.findElements(By.xpath("//div[@class = 'card']//a[text() = 'Více informací']"));
         WebElement tlacitkoViceInformaci = tlacitkaKurzuViceInformaci.get(poradiKategorie);
         tlacitkoViceInformaci.click();
     }
 
-    private void vyplnPrihlaskuNaKurz() {
+    public void vyplnPrihlaskuNaKurz() {
         WebElement menuVyberteTermin = prohlizec.findElement(By.xpath("//div[text()='Vyberte termín...']"));
         menuVyberteTermin.click();
 
